@@ -27,7 +27,7 @@ public class Maquinaria extends javax.swing.JFrame {
         this.modelMaquinaria.addColumn("Id");
         this.modelMaquinaria.addColumn("Marca");
         this.modelMaquinaria.addColumn("Modelo");
-        this.modelMaquinaria.addColumn("vidaUtil");
+        this.modelMaquinaria.addColumn("Utilidad");
         this.llenarTabla();
 //ocultar el ID de la tabla
         this.tblMaquinaria.getColumnModel().getColumn(0).setMinWidth(0);
@@ -48,8 +48,8 @@ public class Maquinaria extends javax.swing.JFrame {
         String id = fila.get("_id").toString();
         String marca  = fila.get("Marca").toString();
         String modelo = fila.get("Modelo").toString();
-        String vidaUtil = fila.get("vidaUtil").toString();
-        this.modelMaquinaria.addRow(new Object[]{id, marca, modelo, vidaUtil});
+        String utilidad = fila.get("Utilidad").toString();
+        this.modelMaquinaria.addRow(new Object[]{id, marca, modelo, utilidad});
     }
 
     public void insertarDatos(){
@@ -57,7 +57,7 @@ public class Maquinaria extends javax.swing.JFrame {
         Document datosObj = new Document("_id", new ObjectId())
             .append("Marca", txtMarca.getText())
             .append("Modelo",txtModelo.getText())
-            .append("vidaUtil",Integer.parseInt(txtvidaUtil.getText()));
+            .append("Utilidad",Integer.parseInt(txtvidaUtil.getText()));
         if(Main.connMongo.insertDocuments(this.Maquinaria, datosObj)){
             this.limpiarForm();
             this.agregarRegistrosTabla(datosObj);
@@ -80,28 +80,19 @@ public class Maquinaria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Marca = new javax.swing.JLabel();
         txtMarca = new javax.swing.JTextField();
-        Modelo = new javax.swing.JLabel();
         txtModelo = new javax.swing.JTextField();
-        vidaUtil = new javax.swing.JLabel();
         txtvidaUtil = new javax.swing.JTextField();
         btninsertar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMaquinaria = new javax.swing.JTable();
+        Marca = new javax.swing.JLabel();
+        Modelo = new javax.swing.JLabel();
+        Utilidad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        Marca.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        Marca.setText("Marca");
-
-        Modelo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        Modelo.setText("Modelo");
-
-        vidaUtil.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        vidaUtil.setText("vidaUtil");
 
         btninsertar.setText("insertar");
         btninsertar.addActionListener(new java.awt.event.ActionListener() {
@@ -134,22 +125,30 @@ public class Maquinaria extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblMaquinaria);
 
+        Marca.setText("Marca");
+
+        Modelo.setText("Modelo");
+
+        Utilidad.setText("Vida Util");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Modelo)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(btninsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(vidaUtil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Marca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(34, 34, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Modelo)
+                            .addComponent(Marca)
+                            .addComponent(Utilidad))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                     .addComponent(txtMarca)
@@ -164,26 +163,27 @@ public class Maquinaria extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Marca))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Modelo)
-                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(vidaUtil)
-                    .addComponent(txtvidaUtil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Marca))
+                        .addGap(33, 33, 33)
+                        .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Modelo))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtvidaUtil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Utilidad))
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btninsertar)
                     .addComponent(btnActualizar)
                     .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -209,9 +209,9 @@ public class Maquinaria extends javax.swing.JFrame {
             dataTabla[i]=this.modelMaquinaria.getValueAt(posicion, i).toString();
            }
 
-           Document datosObj = new Document("Marca",this.txtMarca.getText())
-            .append("Modelo",this.txtModelo.getText())
-            .append("vidaUtil", Integer.parseInt(this.txtvidaUtil.getText()));
+           Document datosObj = new Document("marca",this.txtMarca.getText())
+            .append("modelo",this.txtModelo.getText())
+            .append("vidautil", Integer.parseInt(this.txtvidaUtil.getText()));
            
            JOptionPane.showMessageDialog(null, Main.connMongo.actualizarDocuments(this.Maquinaria,datosObj,dataTabla[0])?"Registro Actualizado con exito":"Registro no pudo ser actualizado");
           
@@ -286,6 +286,7 @@ public class Maquinaria extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Marca;
     private javax.swing.JLabel Modelo;
+    private javax.swing.JLabel Utilidad;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btninsertar;
@@ -294,6 +295,5 @@ public class Maquinaria extends javax.swing.JFrame {
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtvidaUtil;
-    private javax.swing.JLabel vidaUtil;
     // End of variables declaration//GEN-END:variables
 }
